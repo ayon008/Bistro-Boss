@@ -26,8 +26,8 @@ const FoodCard = ({ data }) => {
     }
 
     const handleCart = () => {
-        setProcess(true)
         if (user && user.email) {
+            setProcess(true)
             axiosSecure.post('orders', { image, recipe, name, category, price, email: user?.email })
                 .then(response => {
                     if (response.data.insertedId) {
