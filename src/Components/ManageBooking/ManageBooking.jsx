@@ -1,7 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import { Link } from "react-router-dom";
-import { FaEdit } from "react-icons/fa";
 import SectionTitles from "../SectionTitles/SectionTitles";
 
 const ManageBooking = () => {

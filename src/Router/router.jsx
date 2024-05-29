@@ -19,12 +19,16 @@ import UpdateItems from '../Components/UpdateItem/UpdateItem';
 import AdminRoute from './AdminRoute';
 import AllUsers from '../Components/AllUser/AllUsers';
 import ManageBooking from '../Components/ManageBooking/ManageBooking';
-import StripeContainer from '../Components/PayMent/PayMent';
+import Error from '../Components/ErrorElement/Error';
+import PayMent from '../Components/PayMent/PayMent';
+import PaymentHistory from '../Components/PayMent/PaymentHistory';
+import AdminHome from '../Components/AdminHome/AdminHome';
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Main></Main>,
+        // errorElement: <Error />,
         children: [
             {
                 path: '/',
@@ -78,7 +82,11 @@ const router = createBrowserRouter([
             },
             {
                 path: 'payment',
-                element: <StripeContainer></StripeContainer>
+                element: <PayMent></PayMent>
+            },
+            {
+                path: 'paymentHistory',
+                element: <PaymentHistory></PaymentHistory>
             },
             {
                 path: 'myBooking',
@@ -95,7 +103,7 @@ const router = createBrowserRouter([
             {
                 path: 'updateItems/:id',
                 element: <AdminRoute><UpdateItems></UpdateItems></AdminRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/menu/${params.id}`)
+                loader: ({ params }) => fetch(`https://bistro-boss-server-three-liart.vercel.app/menu/${params.id}`)
             },
             {
                 path: 'allUsers',
@@ -104,7 +112,11 @@ const router = createBrowserRouter([
             {
                 path: 'manageBookings',
                 element: <AdminRoute><ManageBooking></ManageBooking></AdminRoute>
-            }
+            },
+            {
+                path: 'adminHome',
+                element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+            },
         ]
     }
 ]);

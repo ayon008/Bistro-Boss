@@ -5,7 +5,7 @@ import useAxiosPublic from '../../Hooks/useAxiosPublic';
 const TabContent = ({ category }) => {
     const axiosPublic = useAxiosPublic();
     const [data, setData] = useState([]);
-    axiosPublic.get(`menu//${category}`)
+    axiosPublic.get(`menu${category}`)
         .then(response => {
             setData(response.data);
         })

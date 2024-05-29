@@ -45,7 +45,7 @@ const Reservation = () => {
         <div className="w-full">
             <SectionTitles heading={'Book a table'} subHeading={'Reservation'}></SectionTitles>
             <form className="self-stretch mt-16 p-10 max-w-full md:max-w-3xl mx-auto" onSubmit={handleSubmit(onSubmit)}>
-                <div className="flex flex-wrap gap-5">
+                <div className="flex md:flex-nowrap flex-wrap gap-5">
                     <div className="flex flex-col w-full md:w-1/3">
                         <label htmlFor="date" className="text-xl font-semibold text-neutral-700">Date*</label>
                         <div className="flex justify-between mt-5 text-base bg-white rounded-lg border border-gray-200 text-neutral-400">
@@ -62,20 +62,19 @@ const Reservation = () => {
                     </div>
                     <div className="flex flex-col w-full md:w-1/3">
                         <label htmlFor="guest" className="text-xl font-semibold text-neutral-700">Guest*</label>
-                        <div className="mt-5 text-base bg-white rounded-lg border border-gray-200 text-neutral-500 p-4">
-                            <select id="guest" className="w-full" {...register('guest')}>
+                        <div className="mt-5 text-base bg-white rounded-lg border border-gray-200 text-neutral-500">
+                            <select id="guest" className="w-full p-4" {...register('guest')}>
                                 <option value="" disabled selected>1 Person</option>
-                                <option>Star Wars</option>
-                                <option>Harry Potter</option>
-                                <option>Lord of the Rings</option>
-                                <option>Planet of the Apes</option>
-                                <option>Star Trek</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
                             </select>
                         </div>
                         {errors.guest && <p className="text-red-600">{errors.guest.message}</p>}
                     </div>
                 </div>
-                <div className="flex flex-wrap gap-5 mt-7">
+                <div className="flex md:flex-nowrap flex-wrap gap-5 mt-7">
                     <div className="flex flex-col w-full md:w-1/3">
                         <label htmlFor="name" className="text-xl font-semibold text-neutral-700">Name*</label>
                         <div className="mt-5 text-base bg-white rounded-lg border border-gray-200 text-neutral-400">

@@ -27,7 +27,7 @@ const DashBoard = () => {
                         isAdmin ?
                             <>
                                 <li>
-                                    <NavLink className={({ isActive }) => !isActive ? 'text-black Cinzel font-bold' : 'text-white Cinzel font-bold'} to="/dashboard/home" ><FaHome className="mb-1" size={'1.2rem'} /> ADMIN HOME</NavLink>
+                                    <NavLink className={({ isActive }) => !isActive ? 'text-black Cinzel font-bold' : 'text-white Cinzel font-bold'} to="/dashboard/adminHome" ><FaHome className="mb-1" size={'1.2rem'} /> ADMIN HOME</NavLink>
                                 </li>
                                 <li>
                                     <NavLink className={({ isActive }) => !isActive ? 'text-black Cinzel font-bold' : 'text-white Cinzel font-bold'} to="/dashboard/addItems" ><FaCalendar className="mb-1" size={'1.2rem'} /> ADD ITEMS</NavLink>

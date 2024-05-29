@@ -10,7 +10,7 @@ import '@smastrom/react-rating/style.css'
 import { FaQuoteLeft } from 'react-icons/fa';
 
 const Testimonial = () => {
-    const { data } = useFetch("http://localhost:5000/reviews");
+    const { data } = useFetch("https://bistro-boss-server-three-liart.vercel.app/reviews");
     return (
         <div>
             <SectionTitles

@@ -15,7 +15,7 @@ const OurMenu = () => {
             <Cover img={image} title={"OUR MENU"}></Cover>
             <div className='md:px-24 px-6 my-20'>
                 <SectionTitles heading={"Don't miss"} subHeading={"TODAY'S OFFER"}></SectionTitles>
-                <MenuItems btnName={"ORDER YOUR FAVOURITE FOOD"} url={"http://localhost:5000/menu//popular"} link={'/shop'}></MenuItems>
+                <MenuItems btnName={"ORDER YOUR FAVOURITE FOOD"} url={"https://bistro-boss-server-three-liart.vercel.app/menupopular"} link={'/shop'}></MenuItems>
             </div>
             {
                 items.map((item, i) => {
@@ -23,7 +23,7 @@ const OurMenu = () => {
                         <div key={i}>
                             <Cover img={itemImage[i]} title={item}></Cover>
                             <div className="md:px-24 px-6">
-                                <MenuItems btnName={item} url={`http://localhost:5000/menu//${item}`} link={`/order/${item}`} item={item}></MenuItems>
+                                <MenuItems btnName={item} url={`https://bistro-boss-server-three-liart.vercel.app/menu${item}`} link={`/order/${item}`} item={item}></MenuItems>
                             </div>
                         </div>
                     )

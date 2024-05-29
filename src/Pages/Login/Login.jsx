@@ -10,7 +10,7 @@ import { useForm } from 'react-hook-form';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
-import axios from 'axios';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 const Login = () => {
 
@@ -18,6 +18,7 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const pathName = location.state?.from || '/';
+    const axiosPublic = useAxiosPublic()
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -50,7 +51,7 @@ const Login = () => {
         googleLogin()
             .then(result => {
                 const user = result.user;
-                axios.post('http://localhost:5000/user', { name: user?.displayName, email: user.email })
+                axiosPublic.post('user', { name: user?.displayName, email: user.email })
                 console.log(user);
                 navigate(pathName);
             })
@@ -60,7 +61,7 @@ const Login = () => {
     }
 
     const [error, setError] = useState(true);
-    
+
     const handleReCaptcha = e => {
         const user_captcha_value = e.target.value;
         console.log(user_captcha_value);
@@ -75,11 +76,11 @@ const Login = () => {
 
     return (
         <div className='login min-h-screen p-10'>
-            <div className='h-fit m-auto flex border-2 border-gray-300 shadow-right-bottom'>
-                <div className='w-1/2 h-full'>
+            <div className='h-fit m-auto flex flex-col md:flex-row border-2 border-gray-300 shadow-right-bottom'>
+                <div className='md:w-1/2 md:block hidden w-full h-full'>
                     <Lottie className='w-full h-[500px]' animationData={animationData} loop={true} />
                 </div>
-                <div className="h-full w-1/2">
+                <div className="h-full md:w-1/2 w-full">
                     <div className="card shrink-0 w-full max-w-sm h-full m-auto">
                         <div className="card-body">
                             <h3 className="text-2xl font-bold uppercase text-center pt-4">Log In</h3>

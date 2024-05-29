@@ -7,12 +7,13 @@ import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 import axios from 'axios';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 const SingUp = () => {
     // React Hook from
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { googleLogin, signUp, updateUserProfile, logOut } = useAuth();
-
+    const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
 
     const onSubmit = data => {
@@ -25,7 +26,7 @@ const SingUp = () => {
                 console.log(user);
                 updateUserProfile(name)
                     .then(result => {
-                        axios.post('http://localhost:5000/user', { name: user?.displayName, email: user.email })
+                        axiosPublic.post('user', { name: user?.displayName, email: user.email })
                             .then(response => {
                                 Swal.fire({
                                     title: 'Sign Up Successful',
@@ -58,11 +59,11 @@ const SingUp = () => {
 
     return (
         <div className='login min-h-screen p-10'>
-            <div className='h-full flex flex-row-reverse border-2 border-gray-300 shadow-right-bottom'>
-                <div className='w-1/2 h-full'>
+            <div className='h-full flex md:flex-row-reverse flex-col border-2 border-gray-300 shadow-right-bottom'>
+                <div className='md:w-1/2 w-full h-full md:block hidden'>
                     <Lottie className='w-full h-[500px]' animationData={animationData} loop={true} />
                 </div>
-                <div className="h-full w-1/2">
+                <div className="h-full md:w-1/2 w-full">
                     <div className="card shrink-0 w-full max-w-sm h-fit m-auto">
                         <h3 className="text-2xl font-bold uppercase text-center pt-4">Sign Up</h3>
                         <form className="card-body p-4" onSubmit={handleSubmit(onSubmit)}>

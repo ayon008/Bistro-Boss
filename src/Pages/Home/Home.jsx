@@ -10,7 +10,7 @@ import HomeParrallax from '../../Components/HomeParrallex/HomeParrallax';
 import Testimonial from '../../Components/Testimonial/Testimonial';
 
 const Home = () => {
-    const { data } = useFetch('http://localhost:5000/menu');
+    const { data } = useFetch('https://bistro-boss-server-three-liart.vercel.app/menu');
     return (
         <div className='max-w-screen-xl mx-auto'>
             <Banner />
@@ -19,7 +19,7 @@ const Home = () => {
                 <Categories />
                 <ItemSection image={chefService} heading={'bistro boss'}></ItemSection>
                 <SectionTitles subHeading={'Check it out'} heading={'FROM OUR MENU'} />
-                <MenuItems btnName={'View full Menu'} url={"http://localhost:5000/menu//popular"} link={'/menu'}></MenuItems>
+                <MenuItems btnName={'View full Menu'} url={"https://bistro-boss-server-three-liart.vercel.app/menupopular"} link={'/menu'}></MenuItems>
                 <div className='bg-black md:my-16 my-8'>
                     <h2 className='md:text-3xl text-sm font-bold text-center text-white p-16 Raleway'>Call Us: +88 0192345678910</h2>
                 </div>
