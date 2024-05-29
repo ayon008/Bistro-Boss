@@ -2,6 +2,7 @@ import React from 'react';
 import useAuth from '../Hooks/useAuth';
 import { Navigate, useLocation } from 'react-router-dom';
 import useAdmin from '../Hooks/useAdmin';
+import Loader from '../Components/Loader/Loader';
 
 const AdminRoute = ({ children }) => {
     const { user, loader } = useAuth();
@@ -11,9 +12,7 @@ const AdminRoute = ({ children }) => {
 
     if (loader || isPending) {
         return (
-            <div className="h-screen w-full bg-red-400">
-
-            </div>
+            <Loader></Loader>
         )
     }
     else if (user && admin) {

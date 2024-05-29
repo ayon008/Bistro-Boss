@@ -1,5 +1,6 @@
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
+import Loader from "../Components/Loader/Loader";
 
 const PrivateRoute = ({ children }) => {
     const { user, loader } = useAuth();
@@ -8,9 +9,7 @@ const PrivateRoute = ({ children }) => {
 
     if (loader) {
         return (
-            <div className="h-screen w-full bg-red-400">
-
-            </div>
+            <Loader></Loader>
         )
     }
     else if (user) {

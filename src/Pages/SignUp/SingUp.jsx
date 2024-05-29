@@ -8,6 +8,8 @@ import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 import axios from 'axios';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import { useState } from 'react';
+import Process from '../../Components/Foodcard/Process';
 
 const SingUp = () => {
     // React Hook from
@@ -15,13 +17,23 @@ const SingUp = () => {
     const { googleLogin, signUp, updateUserProfile, logOut } = useAuth();
     const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
+    const [process, setProcess] = useState(false);
+
+
+    if (process) {
+        return (
+            <Process></Process>
+        )
+    }
 
     const onSubmit = data => {
+        setProcess(true)
         const name = data.name;
         const email = data.email;
         const password = data.password;
         signUp(email, password)
             .then(result => {
+                setProcess(false)
                 const user = result.user;
                 console.log(user);
                 updateUserProfile(name)

@@ -3,6 +3,8 @@ import { FaTrashAlt, FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import SectionTitles from "../SectionTitles/SectionTitles";
+import { useState } from "react";
+import Process from "../Foodcard/Process";
 
 
 const AllUsers = () => {
@@ -15,11 +17,22 @@ const AllUsers = () => {
         }
     })
 
+    const [process, setProcess] = useState(false);
+
+
+    if (process) {
+        return (
+            <Process></Process>
+        )
+    }
+
     const handleMakeAdmin = user => {
+        setProcess(true)
         axiosSecure.patch(`users/admin/${user._id}`)
             .then(res => {
                 console.log(res.data)
                 if (res.data.modifiedCount > 0) {
+                    setProcess(false)
                     refetch();
                     Swal.fire({
                         position: "center",
@@ -33,6 +46,7 @@ const AllUsers = () => {
     }
 
     const handleDeleteUser = user => {
+        setProcess(true)
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -46,6 +60,7 @@ const AllUsers = () => {
                 axiosSecure.delete(`users/${user._id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
+                            setProcess(false)
                             refetch();
                             Swal.fire({
                                 title: "Deleted!",

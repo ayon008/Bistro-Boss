@@ -11,6 +11,7 @@ import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import Process from '../../Components/Foodcard/Process';
 
 const Login = () => {
 
@@ -26,11 +27,22 @@ const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
+    const [process, setProcess] = useState(false);
+
+
+    if (process) {
+        return (
+            <Process></Process>
+        )
+    }
+
     const onSubmit = (data) => {
+        setProcess(true)
         const email = data.email;
         const password = data.password;
         signIn(email, password)
             .then(result => {
+                setProcess(false)
                 const user = result.user;
                 console.log(user);
                 Swal.fire({

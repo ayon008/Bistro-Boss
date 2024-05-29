@@ -11,7 +11,6 @@ const Navbar = () => {
     const { orderItems } = useOrders()
     const { admin } = useAdmin();
     const isAdmin = admin?.admin;
-    console.log(admin.admin);
 
     const handleLogOut = () => {
         logOut()

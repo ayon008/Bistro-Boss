@@ -4,13 +4,24 @@ import { FaTrash } from 'react-icons/fa';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import Swal from "sweetalert2";
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import Process from '../Foodcard/Process';
 
 const MyCart = () => {
     const { orderItems, refetch } = useOrders();
     const axiosSecure = useAxiosSecure();
     const totalPrice = orderItems.reduce((sum, item) => sum + parseFloat(item.price), 0);
     console.log(totalPrice);
+    const [process, setProcess] = useState(false);
+
+
+    if (process) {
+        return (
+            <Process></Process>
+        )
+    }
     const handleDelete = id => {
+        setProcess(true)
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -24,6 +35,7 @@ const MyCart = () => {
                 axiosSecure.delete(`order/${id}`)
                     .then(response => {
                         if (response.data.deletedCount > 0) {
+                            setProcess(false)
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your file has been deleted.",

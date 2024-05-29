@@ -2,17 +2,28 @@ import { useForm } from "react-hook-form";
 import { useLoaderData } from "react-router-dom";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useState } from "react";
+import Process from "../Foodcard/Process";
 
 const UpdateItems = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const { name, category, recipe, price, _id } = useLoaderData();
     const axiosSecure = useAxiosSecure();
+    const [process, setProcess] = useState(false);
 
+
+    if (process) {
+        return (
+            <Process></Process>
+        )
+    }
     const onSubmit = (data) => {
+        setProcess(true)
         axiosSecure.patch(`menu/${_id}`, data)
             .then(response => {
                 console.log(response);
                 if (response.data.modifiedCount > 0) {
+                    setProcess(false);
                     Swal.fire({
                         position: "center",
                         icon: "success",
@@ -20,7 +31,7 @@ const UpdateItems = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    // reset()
+                    reset()
                 }
             })
         console.log(data);

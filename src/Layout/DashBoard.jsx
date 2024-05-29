@@ -1,12 +1,13 @@
 import { FaBars, FaCalendar, FaClipboardList, FaCommentDots, FaHome, FaList, FaShoppingBag, FaShoppingCart, FaWallet } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
+import Loader from "../Components/Loader/Loader";
 
 const DashBoard = () => {
     const { admin, isPending } = useAdmin();
     const isAdmin = admin?.admin;
     if (isPending) {
-        return <div>Loading</div>
+        return <Loader></Loader>
     }
     return (
         <div className="drawer lg:drawer-open">

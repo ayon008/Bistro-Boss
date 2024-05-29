@@ -9,6 +9,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import Process from '../../Components/Foodcard/Process';
 
 const Contact = () => {
     const [captchaToken, setToken] = useState(null);
@@ -20,8 +21,17 @@ const Contact = () => {
     } = useForm();
 
     const axiosPublic = useAxiosPublic()
+    const [process, setProcess] = useState(false);
+
+
+    if (process) {
+        return (
+            <Process></Process>
+        )
+    }
 
     const onSubmit = (data) => {
+        setProcess(true)
         console.log(data);
         if (!captchaToken) {
             alert('Please complete the reCAPTCHA');
@@ -31,6 +41,7 @@ const Contact = () => {
             .then(response => {
                 console.log('clicked');
                 if (response.data.result.insertedId) {
+                    setProcess(false)
                     console.log(response.data.result.insertedId);
                     Swal.fire({
                         position: "center",

@@ -3,16 +3,23 @@ import SectionTitles from "../SectionTitles/SectionTitles";
 import { FaUtensils } from "react-icons/fa";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useState } from "react";
+import Process from "../Foodcard/Process";
 
 const AddItems = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const imageHostingToken = import.meta.env.VITE_IMGBB
     console.log(imageHostingToken);
     const imageHostingUrl = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostingToken}`;
-
     const axiosSecure = useAxiosSecure()
-
+    const [process, setProcess] = useState(false);
+    if (process) {
+        return (
+            <Process></Process>
+        )
+    }
     const onSubmit = async (data) => {
+        setProcess(true)
         const formData = new FormData();
         console.log(data);
         formData.append('image', data.image[0]);
@@ -30,7 +37,7 @@ const AddItems = () => {
                         .then(response => {
                             console.log(response);
                             if (response.data.insertedId) {
-                                // show success popup
+                                setProcess(false)
                                 Swal.fire({
                                     position: "center",
                                     icon: "success",

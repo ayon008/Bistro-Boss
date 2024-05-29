@@ -4,11 +4,22 @@ import SectionTitles from '../SectionTitles/SectionTitles';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import { useState } from 'react';
+import Process from '../Foodcard/Process';
 
 const ManageItems = () => {
     const { menu, refetch } = useMenu();
     const axiosSecure = useAxiosSecure();
+    const [process, setProcess] = useState(false);
+
+
+    if (process) {
+        return (
+            <Process></Process>
+        )
+    }
     const handleDeleteItem = (item) => {
+        setProcess(true)
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -22,6 +33,7 @@ const ManageItems = () => {
                 const res = await axiosSecure.delete(`menu/${item._id}`);
                 // console.log(res.data);
                 if (res.data.deletedCount > 0) {
+                    setProcess(false)
                     // refetch to update the ui
                     Swal.fire({
                         position: "center",

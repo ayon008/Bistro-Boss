@@ -3,11 +3,22 @@ import { FaTrash } from 'react-icons/fa';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import Swal from "sweetalert2";
 import useBookings from '../../Hooks/useBookings';
+import { useState } from 'react';
+import Process from '../Foodcard/Process';
 
 const MyBooking = () => {
     const { bookings, refetch } = useBookings();
     const axiosSecure = useAxiosSecure();
+    const [process, setProcess] = useState(false);
+
+
+    if (process) {
+        return (
+            <Process></Process>
+        )
+    }
     const handleDelete = id => {
+        setProcess(true)
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -21,6 +32,7 @@ const MyBooking = () => {
                 axiosSecure.delete(`bookings/${id}`)
                     .then(response => {
                         if (response.data.deletedCount > 0) {
+                            setProcess(false)
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your file has been deleted.",
@@ -34,7 +46,7 @@ const MyBooking = () => {
         })
 
     }
-    
+
     return (
         <div className='w-full'>
             <SectionTitles heading={'My bookings'} subHeading={'Excellent Ambience'}></SectionTitles>

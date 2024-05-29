@@ -5,6 +5,8 @@ import useAuth from "../../Hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useOrders from "../../Hooks/useOrders";
+import { useState } from "react";
+import Process from "./Process";
 
 const FoodCard = ({ data }) => {
     const { image, recipe, name, category, price } = data;
@@ -14,11 +16,22 @@ const FoodCard = ({ data }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const pathName = location.pathname;
+    const [process, setProcess] = useState(false);
+
+
+    if (process) {
+        return (
+            <Process></Process>
+        )
+    }
+
     const handleCart = () => {
+        setProcess(true)
         if (user && user.email) {
             axiosSecure.post('orders', { image, recipe, name, category, price, email: user?.email })
                 .then(response => {
                     if (response.data.insertedId) {
+                        setProcess(false)
                         Swal.fire({
                             title: 'Ordered Successful',
                             showClass: {

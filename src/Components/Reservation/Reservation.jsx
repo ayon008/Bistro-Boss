@@ -6,6 +6,8 @@ import * as Yup from 'yup';
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useState } from "react";
+import Process from "../Foodcard/Process";
 
 
 const validationSchema = Yup.object().shape({
@@ -23,12 +25,21 @@ const Reservation = () => {
     const { register, handleSubmit, control, reset, formState: { errors } } = useForm({
         resolver: yupResolver(validationSchema),
     });
+    const [process, setProcess] = useState(false);
 
+
+    if (process) {
+        return (
+            <Process></Process>
+        )
+    }
     const onSubmit = (data) => {
         const reservation = { ...data, userEmail: user?.email }
+        setProcess(true)
         axiosSecure.post('bookings', reservation)
             .then(response => {
                 if (response.data.insertedId) {
+                    setProcess(false)
                     Swal.fire({
                         position: "center",
                         icon: "success",

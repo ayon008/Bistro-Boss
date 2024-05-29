@@ -7,18 +7,29 @@ import { useForm } from 'react-hook-form';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import Process from '../Foodcard/Process';
 
 const AddReview = () => {
     const [rating, setRating] = useState(0);
     const { user } = useAuth();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const axiosSecure = useAxiosSecure();
+    const [process, setProcess] = useState(false);
+
+
+    if (process) {
+        return (
+            <Process></Process>
+        )
+    }
     const onSubmit = (data) => {
+        setProcess(true)
         const review = { ...data, rating, userEmail: user?.email };
         axiosSecure.post('reviews', review)
             .then(response => {
                 console.log(response);
                 if (response.data.insertedId) {
+                    setProcess(false)
                     Swal.fire({
                         position: "center",
                         icon: "success",
