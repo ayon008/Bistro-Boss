@@ -79,6 +79,12 @@ const Login = () => {
             <div className='h-fit m-auto flex flex-col md:flex-row border-2 border-gray-300 shadow-right-bottom'>
                 <div className='md:w-1/2 md:block hidden w-full h-full'>
                     <Lottie className='w-full h-[500px]' animationData={animationData} loop={true} />
+                    <p className='text-xs text-red-300 text-center'>To see admin panel use this account
+                        <br />
+                        admin@gmail.com
+                        <br />
+                        password :12345678
+                    </p>
                 </div>
                 <div className="h-full md:w-1/2 w-full">
                     <div className="card shrink-0 w-full max-w-sm h-full m-auto">
@@ -140,6 +146,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
+
         </div>
     );
 };

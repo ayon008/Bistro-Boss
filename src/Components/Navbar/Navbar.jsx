@@ -4,10 +4,14 @@ import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 import { FaShoppingCart } from "react-icons/fa";
 import useOrders from "../../Hooks/useOrders";
+import useAdmin from "../../Hooks/useAdmin";
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
-    const { orderItems } = useOrders();
+    const { orderItems } = useOrders()
+    const { admin } = useAdmin();
+    const isAdmin = admin?.admin;
+    console.log(admin.admin);
 
     const handleLogOut = () => {
         logOut()
@@ -31,9 +35,16 @@ const Navbar = () => {
         <li>
             <NavLink className={({ isActive }) => isActive ? 'text-yellow-300' : 'text-white'} to="/contactus"  >CONTACT US</NavLink>
         </li>
-        <li>
-            <NavLink className={({ isActive }) => isActive ? 'text-yellow-300' : 'text-white'} to='/dashboard/home'>DASHBOARD</NavLink>
-        </li>
+        {
+            isAdmin ?
+                <li>
+                    <NavLink className={({ isActive }) => isActive ? 'text-yellow-300' : 'text-white'} to='/dashboard/adminHome'>DASHBOARD</NavLink>
+                </li>
+                :
+                <li>
+                    <NavLink className={({ isActive }) => isActive ? 'text-yellow-300' : 'text-white'} to='/dashboard/home'>DASHBOARD</NavLink>
+                </li>
+        }
         <li>
             <NavLink className={({ isActive }) => isActive ? 'text-yellow-300' : 'text-white'} to="/menu">OUR MENU</NavLink>
         </li>
