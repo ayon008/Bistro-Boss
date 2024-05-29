@@ -6,12 +6,16 @@ import dessert from '../../assets/menu/dessert-bg.jpeg'
 import pizza from '../../assets/menu/pizza-bg.jpg'
 import salad from '../../assets/menu/salad-bg.jpg'
 import soup from '../../assets/menu/soup-bg.jpg'
+import { Helmet } from 'react-helmet';
 
 const OurMenu = () => {
     const items = ['dessert', 'pizza', 'salad', 'soup'];
     const itemImage = [dessert, pizza, salad, soup];
     return (
         <div className='max-w-screen-xl mx-auto'>
+            <Helmet>
+                <title>Menu</title>
+            </Helmet>
             <Cover img={image} title={"OUR MENU"}></Cover>
             <div className='md:px-24 px-6 my-20'>
                 <SectionTitles heading={"Don't miss"} subHeading={"TODAY'S OFFER"}></SectionTitles>

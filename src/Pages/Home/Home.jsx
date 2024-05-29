@@ -8,11 +8,15 @@ import useFetch from '../../Hooks/useFetch';
 import FoodCard from '../../Components/Foodcard/FoodCard';
 import HomeParrallax from '../../Components/HomeParrallex/HomeParrallax';
 import Testimonial from '../../Components/Testimonial/Testimonial';
+import { Helmet } from 'react-helmet';
 
 const Home = () => {
     const { data } = useFetch('https://bistro-boss-server-three-liart.vercel.app/menu');
     return (
         <div className='max-w-screen-xl mx-auto'>
+            <Helmet>
+                <title>Bistro Boss</title>
+            </Helmet>
             <Banner />
             <div className='md:px-24 px-6'>
                 <SectionTitles subHeading={'From 11:00am to 10:00pm'} heading={'ORDER ONLINE'} />

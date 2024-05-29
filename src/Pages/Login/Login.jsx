@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import Process from '../../Components/Foodcard/Process';
+import { Helmet } from 'react-helmet';
 
 const Login = () => {
 
@@ -88,6 +89,9 @@ const Login = () => {
 
     return (
         <div className='login min-h-screen p-10'>
+            <Helmet>
+                <title>Login</title>
+            </Helmet>
             <div className='h-fit m-auto flex flex-col md:flex-row border-2 border-gray-300 shadow-right-bottom'>
                 <div className='md:w-1/2 md:block hidden w-full h-full'>
                     <Lottie className='w-full h-[500px]' animationData={animationData} loop={true} />

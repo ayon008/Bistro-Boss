@@ -10,6 +10,7 @@ import axios from 'axios';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import { useState } from 'react';
 import Process from '../../Components/Foodcard/Process';
+import { Helmet } from 'react-helmet';
 
 const SingUp = () => {
     // React Hook from
@@ -71,6 +72,9 @@ const SingUp = () => {
 
     return (
         <div className='login min-h-screen p-10'>
+            <Helmet>
+                <title>Sign Up</title>
+            </Helmet>
             <div className='h-full flex md:flex-row-reverse flex-col border-2 border-gray-300 shadow-right-bottom'>
                 <div className='md:w-1/2 w-full h-full md:block hidden'>
                     <Lottie className='w-full h-[500px]' animationData={animationData} loop={true} />

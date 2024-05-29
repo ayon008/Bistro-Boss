@@ -2,6 +2,7 @@ import { FaBars, FaCalendar, FaClipboardList, FaCommentDots, FaHome, FaList, FaS
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
 import Loader from "../Components/Loader/Loader";
+import { Helmet } from "react-helmet";
 
 const DashBoard = () => {
     const { admin, isPending } = useAdmin();
@@ -11,6 +12,9 @@ const DashBoard = () => {
     }
     return (
         <div className="drawer lg:drawer-open">
+            <Helmet>
+                <title>Dashboard</title>
+            </Helmet>
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col items-center justify-center w-full">
                 {/* Page content here */}

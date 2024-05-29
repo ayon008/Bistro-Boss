@@ -5,11 +5,11 @@ import image from '../../assets/contact/banner.jpg'
 import { FaClock, FaLocationPin, FaPhone, FaTelegram } from 'react-icons/fa6';
 import ReCAPTCHA from "react-google-recaptcha";
 import { useState } from 'react';
-import axios from 'axios';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import Process from '../../Components/Foodcard/Process';
+import { Helmet } from 'react-helmet';
 
 const Contact = () => {
     const [captchaToken, setToken] = useState(null);
@@ -63,6 +63,9 @@ const Contact = () => {
 
     return (
         <div className='max-w-screen-xl mx-auto'>
+            <Helmet>
+                <title>Contact Us</title>
+            </Helmet>
             <Cover img={image} title={'Contact Us'}></Cover>
             <div className="lg:px-0 px-6">
                 <SectionTitles subHeading={"Visit Us"} heading={"Our Location"}></SectionTitles>
